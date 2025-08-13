@@ -3,10 +3,8 @@
   "character_width": 120,
   "tabs": false,
   "tabs_width": 4,
-  "sort_imports": true,
   "brace_style": "Allman",
   "newline_style": "LF",
-  "indent_cases": false,
   "spaces_around_colons": true,
   "spaces": 4
 }
