@@ -63,6 +63,38 @@ draw_rectangle_on_grid_center_justified :: proc(r: rl.Rectangle, color: rl.Color
 }
 
 
+draw_rectangle_on_grid_justified :: proc(r: rl.Rectangle, color: rl.Color, cell_size: f32, horizontal_justification: Horizontal_Justification = .Left, vertical_justification: Vertical_Justification = .Top)
+{
+	justified_rectangle := r
+	switch horizontal_justification
+	{
+		case .Right:
+		{
+			justified_rectangle.x -= r.width
+		}
+		case .Centered:
+		{
+			justified_rectangle.x -= r.width/2
+		}
+		case .Left: {}
+	}
+	switch vertical_justification
+	{
+		case .Bottom:
+		{
+			justified_rectangle.y -= r.height
+		}
+		case .Centered:
+		{
+			justified_rectangle.y -= r.height/2
+		}
+		case .Top: {}
+
+	}
+
+	draw_rectangle_on_grid(justified_rectangle, color, cell_size)
+}
+
 draw_rectangle_lines_on_grid :: proc(rectangle: rl.Rectangle, line_thick: f32, color: rl.Color, cell_size: f32)
 {
 	render_rectangle := get_rectangle_on_grid(rectangle, cell_size)
@@ -202,7 +234,7 @@ draw_text_on_grid_with_background :: proc(
 			draw_text_on_grid(font, text, render_pos, size, spacing, text_tint, grid_cell_size)
 		}
 		case .Right:
-		{
+		{	
 			draw_rectangle_on_grid_right_justified(r, background_color, grid_cell_size)
 			draw_text_on_grid_right_justified(font, text, render_pos, size, spacing, text_tint, grid_cell_size)
 

@@ -413,7 +413,7 @@ root_state_game :: proc()
 		rl.ClearBackground(rl.LIGHTGRAY) 
 		
 		{
-			rlgrid.draw_rectangle_on_grid_center_justified(gmem.rectangle, gmem.rectangle_color, global_game_texture_grid_cell_size)
+			rlgrid.draw_rectangle_on_grid_justified(gmem.rectangle, gmem.rectangle_color, global_game_texture_grid_cell_size, .Centered, .Centered)
 		}
 	
 		if gmem.dbg_show_grid && gmem.dbg_camera_zoom > 0.09
