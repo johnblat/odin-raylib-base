@@ -301,6 +301,7 @@ root_state_game :: proc()
 		else if rl.IsKeyPressed(.MINUS)
 		{
 			gmem.dbg_camera_zoom -= 0.1
+			gmem.dbg_camera_zoom = max(gmem.dbg_camera_zoom, 0.1)
 		}
 		else if rl.IsKeyPressed(.EQUAL)
 		{
@@ -415,7 +416,7 @@ root_state_game :: proc()
 			rlgrid.draw_rectangle_on_grid_center_justified(gmem.rectangle, gmem.rectangle_color, global_game_texture_grid_cell_size)
 		}
 	
-		if gmem.dbg_show_grid 
+		if gmem.dbg_show_grid && gmem.dbg_camera_zoom > 0.09
 		{
 			
 		    // 1) Convert all 4 screen corners to world space (handles offset, zoom, rotation).
@@ -461,6 +462,8 @@ root_state_game :: proc()
 		    minPixelSpacing : f32 = 8.0
 		    stepMul : int = int(math.ceil(minPixelSpacing) / (global_game_texture_grid_cell_size * (camera.zoom > 0 ? camera.zoom : 1.0)))
 		    if stepMul < 1 do stepMul = 1
+		            if stepMul > 100 do stepMul = 100
+
 		    step : f32 = global_game_texture_grid_cell_size * f32(stepMul);
 
 		    // 3) Draw vertical lines.
