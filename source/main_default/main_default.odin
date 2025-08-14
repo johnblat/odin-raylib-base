@@ -1,18 +1,19 @@
 package main
 
-import rl "vendor:raylib"
 import game ".."
+import rl "vendor:raylib"
 
 
-main :: proc () {
-	
-	game.game_init_platform()
-	game.game_init()
+main :: proc() 
+{
 
-	for game.game_should_run() 
-	{
-		game.game_update()
-	}
+    game.game_init_platform()
+    game.game_init()
 
-	game.game_shutdown()
+    for game.game_should_run() 
+    {
+        game.game_update()
+    }
+
+    game.game_shutdown()
 }
